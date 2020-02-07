@@ -33,10 +33,10 @@ if __name__ == '__main__':
     file = drive_service.files().create(
         body={
             'name': 'minions.jpg',
-            'parents': [secrets.FOLDER_ID],
         },
         media_body=media,
         fields='id',
     ).execute()
+
 
     print('File ID: %s' % file.get('id'))
