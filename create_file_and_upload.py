@@ -1,3 +1,7 @@
+import tarfile
+import time
+import sys
+
 import os
 import pickle
 import secrets
@@ -14,7 +18,17 @@ def get_credentials():
 
 
 if __name__ == '__main__':
-    media = MediaFileUpload('img/minions.jpg', mimetype='image/jpeg')
+
+    word = sys.argv[1]
+    nome_file = sys.argv[2]
+    timestr = time.strftime("%Y%m%d_%H%M")
+    print(timestr)
+
+    with tarfile.open(nome_file + timestr + '.tar.gz', "w:gz") as tar:
+        for name in [word]:
+            tar.add(name)
+
+    media = MediaFileUpload(nome_file + timestr + '.tar.gz', mimetype='image/jpeg')
     drive_service = build('drive', 'v3', credentials=get_credentials())
     file = drive_service.files().create(
         body={
