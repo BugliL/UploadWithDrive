@@ -11,7 +11,6 @@ from googleapiclient.http import MediaFileUpload
 
 
 def get_credentials():
-    global creds
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
             return pickle.load(token)

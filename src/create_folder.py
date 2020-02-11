@@ -1,7 +1,7 @@
 from googleapiclient.discovery import build
 
-from secrets import FOLDER_NAME
-from upload_file import get_credentials
+from src.secrets import FOLDER_NAME
+from src.upload_file import get_credentials
 
 if __name__ == '__main__':
     file_metadata = {

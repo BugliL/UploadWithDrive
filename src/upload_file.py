@@ -1,6 +1,6 @@
 import os
 import pickle
-import secrets
+from src import secrets
 
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -14,7 +14,7 @@ def get_credentials():
 
 
 if __name__ == '__main__':
-    media = MediaFileUpload('img/minions.jpg', mimetype='image/jpeg')
+    media = MediaFileUpload('../img/minions.jpg', mimetype='image/jpeg')
     drive_service = build('drive', 'v3', credentials=get_credentials())
     file = drive_service.files().create(
         body={

@@ -1,4 +1,4 @@
-import secrets
+from src import secrets
 import tarfile
 import time
 import sys
