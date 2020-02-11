@@ -17,25 +17,30 @@ def get_credentials():
             return pickle.load(token)
 
 
-if __name__ == '__main__':
-
-    word = sys.argv[1]
-    nome_file = sys.argv[2]
-    timestr = time.strftime("%Y%m%d_%H%M")
-    print(timestr)
-
-    with tarfile.open(nome_file + timestr + '.tar.gz', "w:gz") as tar:
+def tar_gz_files(fname: str) -> None:
+    with tarfile.open(fname, "w:gz") as tar:
         for name in [word]:
             tar.add(name)
 
-    media = MediaFileUpload(nome_file + timestr + '.tar.gz', mimetype='image/jpeg')
+
+def upload_tar_gz_file(name: str) -> dict:
+    media = MediaFileUpload(name, mimetype='application/tar+gzip', )
     drive_service = build('drive', 'v3', credentials=get_credentials())
-    file = drive_service.files().create(
+    return drive_service.files().create(
         body={
-            'name': 'minions.jpg',
+            'name': name,
+            'parents': [secrets.FOLDER_ID],
         },
         media_body=media,
         fields='id',
     ).execute()
 
+
+if __name__ == '__main__':
+    word, file_name = sys.argv[1:]
+    time_string = time.strftime("%Y%m%d_%H%M")
+    name = file_name + '_' + time_string + '.tar.gz'
+
+    tar_gz_files(name)
+    file = upload_tar_gz_file(name)
     print('File ID: %s' % file.get('id'))

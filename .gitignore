@@ -3,4 +3,4 @@ venv
 *.pyc
 token.pickle
 secrets.py
-.gitignore
+*.tar.gz

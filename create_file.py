@@ -35,7 +35,7 @@ if __name__ == '__main__':
     file = drive_service.files().create(
         body={
             'name': nome_file + '_' + timestr + '.tar.gz',
-            'parent': secrets.FOLDER_ID,
+            'parent': [secrets.FOLDER_ID],
         },
         media_body=media_file_upload,
         fields='id',
