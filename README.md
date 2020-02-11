@@ -15,7 +15,11 @@ $ echo "FOLDER_NAME = 'your_folder_name'" > secrets.py
     ```bash
     $ echo "FOLDER_ID = 'your_folder_id'" >> secrets.py
     ```
-5) python upload_file
+5) python create_file_and_upload.py <ABSOLUTE PATH> <FILENAME>
 
 
-Next version will be improved to zip folder and contents and take parameters from command line.
+## Example of secrets.py
+```python
+FOLDER_ID = 'SPECIAL CODE PROVIDED FROM CREATE_FOLDER.py'
+FOLDER_NAME = 'TMP_FOLDER_FOR_UPLOAD'
+```
